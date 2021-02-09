@@ -21,8 +21,8 @@ window.onload = function(){
 }
 
 function desenharJogo() {
-    cobraX=proximoX;
-    cobraY=proximoY;
+    cobraX=proximoX+cobraX;
+    cobraY=proximoY+cobraY;
     contexto.fillStyle = "#ed58ca";
     contexto.fillRect(0,0,tela.width,tela.height);
 
@@ -39,6 +39,13 @@ function desenharJogo() {
             tamanhoCobra=tamanhoCobraPadrao;
         }
     }
+
+    caminhoCobra.push(
+        {
+            x:cobraX,
+            y:cobraY
+        }
+    )
 }
 
 function keyDownEvent(event) {
