@@ -23,6 +23,23 @@ window.onload = function(){
 function desenharJogo() {
     cobraX=proximoX+cobraX;
     cobraY=proximoY+cobraY;
+
+    if (cobraX<0) {
+        cobraX = tamanhoTela-1;
+    }
+    if (cobraX<0) {
+        cobraX = tamanhoTela-1;
+    }
+    if (cobraX>tamanhoTela-1) {
+        cobraX=0;
+    }
+
+    if (cobraX==comidaX && cobraY == comidaY) {
+        tamanhoCobra++;
+        comidaX=Math.floor(Math.random() * tamanhoTela);
+        comidaY=Math.floor(Math.random() * tamanhoTela);
+    }
+
     contexto.fillStyle = "#ed58ca";
     contexto.fillRect(0,0,tela.width,tela.height);
 
@@ -40,12 +57,23 @@ function desenharJogo() {
         }
     }
 
+    contexto.fillStyle="#ed5858";
+    contexto.fillRect(
+        comidaX*tamanhoCaminho, 
+        comidaY*tamanhoCaminho,
+        tamanhoCaminho, 
+        tamanhoCaminho
+    )
+
     caminhoCobra.push(
         {
             x:cobraX,
             y:cobraY
         }
-    )
+    );
+    while(caminhoCobra.length>tamanhoCobra){
+        caminhoCobra.shift();
+    }
 }
 
 function keyDownEvent(event) {
